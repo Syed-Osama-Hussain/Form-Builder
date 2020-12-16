@@ -1,18 +1,13 @@
 import React from "react";
 import Login from "./components/login";
+import NavBar from "./components/navbar";
 import {Switch, Route } from "react-router-dom"
-import { Layout, Menu } from 'antd';
 import './App.css';
 
 const App = () => {
   return (
     <div>
-    <Layout.Header style={{ width: '100%' }}>
-      <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['2']}>
-        <Menu.Item key="1">Dashboard</Menu.Item>
-      </Menu>
-    </Layout.Header>
-
+      <NavBar/>
       <Switch>
         <Route path="/" component={Login}/>
       </Switch>
