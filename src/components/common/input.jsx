@@ -1,6 +1,9 @@
 import React from "react";
+import PropTypes from 'prop-types';
+import { Form, Input } from 'antd';
 
-const Input = ({ name, label, required, placeholder }) => {
+
+const InputComp = ({ name, label, required, placeholder }) => {
   return (
     <Form.Item
     label={label}
@@ -17,11 +20,16 @@ const Input = ({ name, label, required, placeholder }) => {
   );
 };
 
-BaseForm.propTypes = {
+InputComp.propTypes = {
     name: PropTypes.string.isRequired,
     label: PropTypes.string.isRequired,
     required: PropTypes.bool,
     placeholder: PropTypes.string
 }
 
-export default Input;
+InputComp.defaultProps = {
+    required: false,
+    placeholder: ""
+  };
+  
+export default InputComp;
