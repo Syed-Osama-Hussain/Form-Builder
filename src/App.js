@@ -1,23 +1,21 @@
-import logo from './logo.svg';
+import React from "react";
+import Login from "./components/login";
+import {Switch, Route } from "react-router-dom"
+import { Layout, Menu } from 'antd';
 import './App.css';
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+    <Layout.Header style={{ width: '100%' }}>
+      <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['2']}>
+        <Menu.Item key="1">Dashboard</Menu.Item>
+      </Menu>
+    </Layout.Header>
+
+      <Switch>
+        <Route path="/" component={Login}/>
+      </Switch>
     </div>
   );
 }
