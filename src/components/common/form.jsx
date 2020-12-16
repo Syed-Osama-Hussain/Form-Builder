@@ -17,7 +17,7 @@ const tailLayout = {
   },
 };
 
-const BaseForm = ({submitable, doSubmit}) => {
+const BaseForm = ({submitable, doSubmit, btnText}) => {
 
     const handleSubmit = (values)=>{
         try{
@@ -67,7 +67,7 @@ const BaseForm = ({submitable, doSubmit}) => {
       {submitable &&  
       <Form.Item {...tailLayout}>
         <Button type="primary" htmlType="submit">
-          Submit
+          {btnText}
         </Button>
       </Form.Item>}
     </Form>
@@ -79,7 +79,8 @@ BaseForm.propTypes = {
     data: PropTypes.object.isRequired,
     submitable: PropTypes.bool.isRequired,
     setData: PropTypes.func.isRequired,
-    doSubmit: PropTypes.func.isRequired
+    doSubmit: PropTypes.func.isRequired,
+    btnText: PropTypes.string.isRequired
 }
 
 export default BaseForm;
