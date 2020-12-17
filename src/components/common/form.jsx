@@ -1,24 +1,24 @@
 import React from "react";
-import { Form, Input, Button } from 'antd';
+import { Form, Button } from 'antd';
 import PropTypes from 'prop-types';
+import InputComp from "./input";
 
 const layout = {
   labelCol: {
     span: 8,
   },
   wrapperCol: {
-    span: 8,
+    span: 20,
   },
 };
 const tailLayout = {
   wrapperCol: {
-    offset: 11,
+    offset: 7,
     span: 16,
   },
 };
 
-const BaseForm = ({submitable, doSubmit, btnText}) => {
-
+const BaseForm = ({handleChange, fieldDetails, submitable, doSubmit, btnText}) => {
     const handleSubmit = (values)=>{
         try{
             doSubmit(values);
@@ -27,46 +27,27 @@ const BaseForm = ({submitable, doSubmit, btnText}) => {
         }
     }
 
+    const onFinishFailed = (errorInfo) => {
+      console.log(errorInfo)
+    }
+
   return (
       <React.Fragment>
     <Form 
       {...layout}
+      layout="vertical"
       name="basic"
       initialValues={{
         remember: true,
       }}
       onFinish={handleSubmit}
+      onFinishFailed={onFinishFailed}
     >
-
-      <Form.Item
-        label="Username"
-        name="email"
-        rules={[
-          {
-            required: true,
-            message: 'Please enter your email!',
-          },
-        ]}
-      >
-        <Input />
-      </Form.Item>
-
-      <Form.Item
-        label="Password"
-        name="password"
-        rules={[
-          {
-            required: true,
-            message: 'Please enter your password!',
-          },
-        ]}
-      >
-        <Input.Password />
-      </Form.Item>
+      {fieldDetails.map(field => {return <div key={field.name}><InputComp name={field.name} label={field.label} required={field.required} placeholder={field.placeholder} type={field.type} onChange={handleChange}/></div>})}
 
       {submitable &&  
       <Form.Item {...tailLayout}>
-        <Button type="primary" htmlType="submit">
+        <Button shape="round" type="primary" htmlType="submit">
           {btnText}
         </Button>
       </Form.Item>}
@@ -76,11 +57,12 @@ const BaseForm = ({submitable, doSubmit, btnText}) => {
 };
 
 BaseForm.propTypes = {
+    fieldDetails: PropTypes.array.isRequired,
     data: PropTypes.object.isRequired,
     submitable: PropTypes.bool.isRequired,
-    setData: PropTypes.func.isRequired,
-    doSubmit: PropTypes.func.isRequired,
-    btnText: PropTypes.string.isRequired
+    doSubmit: PropTypes.func,
+    btnText: PropTypes.string.isRequired,
+    handleChange: PropTypes.func
 }
 
 export default BaseForm;
