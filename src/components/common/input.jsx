@@ -3,15 +3,12 @@ import PropTypes from 'prop-types';
 import { Form, Input, InputNumber, Checkbox} from 'antd';
 
 
-const InputComp = ({ name, label, required, placeholder, type, onChange}) => {
-  
+const InputComp = ({ name, label, required, type, onChange}) => {
+
   const getElement = (type) => {
     if(type === "text")
     {
-      // if(onChange)
-      //   return <Input onChange={onChange} placeholder={placeholder}/>
-      
-      return <Input onChange={onChange} placeholder={placeholder}/>
+      return <Input onChange={onChange}/>
     }
     if(type === "password"){
       return <Input.Password onChange={onChange}/>
@@ -34,7 +31,7 @@ const InputComp = ({ name, label, required, placeholder, type, onChange}) => {
     rules={[
       {
         required: {required},
-        message: {placeholder},
+        message: 'Please Enter required field',
       },
     ]}
   >

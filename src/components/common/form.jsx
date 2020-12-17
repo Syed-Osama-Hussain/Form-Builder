@@ -30,7 +30,6 @@ const BaseForm = ({handleChange, fieldDetails, submitable, doSubmit, btnText}) =
     const onFinishFailed = (errorInfo) => {
       console.log(errorInfo)
     }
-
   return (
       <React.Fragment>
     <Form 
@@ -43,7 +42,15 @@ const BaseForm = ({handleChange, fieldDetails, submitable, doSubmit, btnText}) =
       onFinish={handleSubmit}
       onFinishFailed={onFinishFailed}
     >
-      {fieldDetails.map(field => {return <div key={field.name}><InputComp name={field.name} label={field.label} required={field.required} placeholder={field.placeholder} type={field.type} onChange={handleChange}/></div>})}
+      {fieldDetails.map((field,index) => {
+        return (
+          <div key={index}>
+            <InputComp name={field.name} label={field.label} required={field.required} 
+            placeholder={field.placeholder} type={field.type} onChange={handleChange}/>
+          </div>
+          )
+        }
+      )}
 
       {submitable &&  
       <Form.Item {...tailLayout}>
