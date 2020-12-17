@@ -1,15 +1,17 @@
 import React from "react";
 import Login from "./components/login";
-import NavBar from "./components/navbar";
-import {Switch, Route } from "react-router-dom"
+import Dashboard from "./components/dashboard";
+import {Switch, Route, Redirect } from "react-router"
 import './App.css';
+
 
 const App = () => {
   return (
     <div>
-      <NavBar/>
       <Switch>
-        <Route path="/" component={Login}/>
+        <Route path="/login" component={Login}/>
+        <Route path="/dashboard" component={Dashboard}/>
+        <Redirect to="/login" />
       </Switch>
     </div>
   );
