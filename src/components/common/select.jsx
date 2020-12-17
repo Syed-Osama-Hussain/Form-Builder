@@ -3,11 +3,11 @@ import PropTypes from 'prop-types';
 import { Select } from 'antd';
 const { Option } = Select;
 
-const SelectComp = ({ options}) => {
+const SelectComp = ({ options, onChange}) => {
   return (
-    <Select  placeholder="Select an input method" style={{ width: "20%" }} >
+    <Select  onChange={onChange} placeholder="Select an input method" style={{ width: "60%" }} >
     {options.map(option => (
-        <Option key={option} value={option}>
+        <Option  key={option} value={option}>
           {option}
         </Option>
       ))}
@@ -16,7 +16,8 @@ const SelectComp = ({ options}) => {
 };
 
 SelectComp.propTypes = {
-    options: PropTypes.array.isRequired
+    options: PropTypes.array.isRequired,
+    onChange: PropTypes.func
 }
 
 export default SelectComp;
