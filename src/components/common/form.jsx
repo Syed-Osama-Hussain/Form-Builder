@@ -19,7 +19,10 @@ const tailLayout = {
 };
 
 const BaseForm = ({handleChange, fieldDetails, submitable, doSubmit, btnText}) => {
+
+    const btnFloat = btnText === "login >" ? "none":"right"
     const handleSubmit = (values)=>{
+      console.log(values)
         try{
             doSubmit(values);
         }catch(ex){
@@ -54,7 +57,7 @@ const BaseForm = ({handleChange, fieldDetails, submitable, doSubmit, btnText}) =
 
       {submitable &&  
       <Form.Item {...tailLayout}>
-        <Button shape="round" type="primary" htmlType="submit">
+        <Button style={{float:btnFloat}} shape={btnText === "login >" ? "round":""} type="primary" htmlType="submit">
           {btnText}
         </Button>
       </Form.Item>}
