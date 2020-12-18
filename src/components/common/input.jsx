@@ -4,7 +4,6 @@ import { Form, Input, InputNumber, Checkbox} from 'antd';
 
 
 const InputComp = ({ name, label, required, type, onChange}) => {
-
   const getElement = (type) => {
     if(type === "text")
     {
@@ -19,25 +18,40 @@ const InputComp = ({ name, label, required, type, onChange}) => {
     }
 
     if(type === "checkbox"){
-      return <Checkbox onChange={onChange}/>
+      return <Checkbox value={false} onChange={onChange}>{label}</Checkbox>
     }
 
   }
   
+  const rules = [
+    {
+      required: required,
+      message: 'Please Enter required field',
+    },
+  ]
+  if(type==="checkbox"){
   return (
+    <div>
     <Form.Item
-    label={label}
+    valuePropName="checked"
     name={name}
-    rules={[
-      {
-        required: {required},
-        message: 'Please Enter required field',
-      },
-    ]}
+    rules={rules}
   >
-    {getElement(type)}
+    {getElement(type)} 
+    
   </Form.Item>
+  </div>
   );
+  }else{
+    return(<Form.Item
+      label={label}
+      name={name}
+      rules={rules}
+    >
+      {getElement(type)}
+    </Form.Item>
+  )
+  }
 };
 
 InputComp.propTypes = {
