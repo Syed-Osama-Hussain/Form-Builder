@@ -11,7 +11,7 @@ const App = () => {
       <Switch>
         <Route path="/login" component={Login}/>
         <Route path="/dashboard" component={Dashboard}/>
-        <Redirect to="/login" />
+        <Redirect from="/" to="/login" />
       </Switch>
     </div>
   );
