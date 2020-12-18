@@ -22,8 +22,8 @@ const BaseForm = ({handleChange, fieldDetails, submitable, doSubmit, btnText}) =
 
     const btnFloat = btnText === "login >" ? "none":"right"
     const handleSubmit = (values)=>{
-      console.log(values)
-        try{
+
+      try{
             doSubmit(values);
         }catch(ex){
             console.log(ex);
