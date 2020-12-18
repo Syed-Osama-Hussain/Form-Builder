@@ -20,7 +20,6 @@ const Login = () => {
     const [data] = useState({email:"",password:""});
 
     const doSubmit = ({email, password})=>{
-        console.log(email,password)
         try{
             const user = login(email,password);
             alert(`Welcome to Form Builder ${user}`)
@@ -32,13 +31,10 @@ const Login = () => {
     }
 
     const handleChange = ({currentTarget: input}) => {
-        console.log(input.value,input.type)
-
         if(!input.value){
             input.placeholder = ""
             return
         }
-
      }
 
     return(
