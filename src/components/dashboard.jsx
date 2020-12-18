@@ -65,12 +65,6 @@ const Dashboard = () => {
     }
 
     const handleChangeSelect = (value) =>{
-        const field = fieldDetails.find(detail => { return detail.type == value.toLowerCase()})
-        if(field){
-            alert(`Field of ${value} is already added.`)
-            return;
-        }
-
         let newField = {name: `question${fieldDetails.length+1}`, label:`Question ${fieldDetails.length+1}`, required: false, placeholder: "", type: value.toLowerCase()}
         
         const newFieldData = [...fieldDetails,newField]; 
