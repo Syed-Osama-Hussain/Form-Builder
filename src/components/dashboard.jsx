@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import NavBar from "./navbar";
-import { Layout, Row, Col, Button } from 'antd';
-import InputComp from './common/input';
-import BaseForm from "./common/form";
+import { Layout } from 'antd';
 import DisplayModal from "./displayModal";
 import { getUser } from "../services/auth";
 import { Redirect } from "react-router";
 import SideBar from "./sideBar";
+import { DndProvider } from 'react-dnd'
+import { HTML5Backend } from 'react-dnd-html5-backend'
+import MainContent from "./content";
 
 
 const Dashboard = () => {
@@ -74,37 +75,22 @@ const Dashboard = () => {
         setEditmode(false)
     }
 
-    const height =  "273px";
 
-    return(<div>
-        <DisplayModal title={title} data={data} isModalVisible={isModalVisible} handleOk={handleOk} handleCancel={handleCancel}/>
-        <NavBar/>
-        <Layout className="site-layout-background" style={{ padding: '0px 0', paddingTop:"0px", backgroundColor:"#001529" }}>
-        <SideBar handleClick={handleSiderButtonClick}/>
-        <Layout.Content className="site-layout-background" style={{padding: '20px',
-            margin: 0,
-            minHeight: 280,marginTop:"2%"}} >
-            <Row style={{backgroundColor: "#001529", paddingTop: "20px", marginTop:"-2%"}}>
-            <Col xs={15} sm={15} lg={7} xl={1}></Col>
-            <Col id="dashboard" xs={22} sm={19} lg={7} xl={7} >
-            {editMode &&  <React.Fragment>  
-                <Button onClick={handleClick} style={{marginLeft:"33%"}} disabled={previewDisabled} type="primary" htmlType="button">
-                Preview
-                </Button></React.Fragment>}
-                <div style={{marginTop:"10%"}}>
-                    <InputComp name={"title"} label={""} required={true} placeholder={"Enter Form Title"} type={"text"} onChange={handleChangeTitle}/>
-                </div>
-                <div style={{border:"1px solid #d9d9d9",marginTop: "-25px", height: height, overflowY:"scroll",backgroundColor:"white"}}>
-                    <div style={{marginLeft:"10%",marginTop:"5%"}}>
-                    <BaseForm doSubmit={doSubmit} data={data} fieldDetails={fieldDetails} submitable={!editMode} btnText={"Submit"}/>
-                    </div>
-                </div>
-            </Col>
-            </Row>
-        </Layout.Content>
-        </Layout>
+    return(
+    <DndProvider backend={HTML5Backend}>
+        <div>
+            <DisplayModal title={title} data={data} isModalVisible={isModalVisible} handleOk={handleOk} handleCancel={handleCancel}/>
+            <NavBar/>
+            
+            <Layout className="site-layout-background" style={{ padding: '0px 0', paddingTop:"0px", backgroundColor:"#001529" }}>
+            
+            <SideBar handleClick={handleSiderButtonClick}/>
+            
+            <MainContent previewDisabled={previewDisabled} editMode={editMode} doSubmit={doSubmit} handleChangeTitle={handleChangeTitle} handleClick={handleClick} data={data} fieldDetails={fieldDetails}/>
+            </Layout>
 
-    </div>)
+        </div>
+    </DndProvider>)
 }
 
 export default Dashboard;
