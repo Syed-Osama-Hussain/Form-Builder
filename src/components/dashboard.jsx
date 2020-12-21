@@ -80,13 +80,13 @@ const Dashboard = () => {
     <DndProvider backend={HTML5Backend}>
         <div>
             <DisplayModal title={title} data={data} isModalVisible={isModalVisible} handleOk={handleOk} handleCancel={handleCancel}/>
+            
             <NavBar/>
             
-            <Layout className="site-layout-background" style={{ padding: '0px 0', paddingTop:"0px", backgroundColor:"#001529" }}>
-            
-            <SideBar handleClick={handleSiderButtonClick}/>
-            
-            <MainContent previewDisabled={previewDisabled} editMode={editMode} doSubmit={doSubmit} handleChangeTitle={handleChangeTitle} handleClick={handleClick} data={data} fieldDetails={fieldDetails}/>
+            <Layout className="site-layout-background" style={{ padding: '0px 0', paddingTop:"0px", backgroundColor:"#001529" }}>            
+                <SideBar handleClick={handleSiderButtonClick}/>
+                
+                <MainContent previewDisabled={previewDisabled} editMode={editMode} doSubmit={doSubmit} handleChangeTitle={handleChangeTitle} handleClick={handleClick} data={data} fieldDetails={fieldDetails}/>
             </Layout>
 
         </div>
