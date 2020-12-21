@@ -64,7 +64,8 @@ const Dashboard = () => {
         setPreviewDisabled(false)
     }
 
-    const handleSiderButtonClick = (value) =>{
+    const handleDrop = (value) =>{
+        console.log(value)
         let newField = {name: `question${fieldDetails.length+1}`, label:`Question ${fieldDetails.length+1}`, required: false, placeholder: "", type: value.toLowerCase()}
         
         const newFieldData = [...fieldDetails,newField]; 
@@ -84,9 +85,9 @@ const Dashboard = () => {
             <NavBar/>
             
             <Layout className="site-layout-background" style={{ padding: '0px 0', paddingTop:"0px", backgroundColor:"#001529" }}>            
-                <SideBar handleClick={handleSiderButtonClick}/>
+                <SideBar/>
                 
-                <MainContent previewDisabled={previewDisabled} editMode={editMode} doSubmit={doSubmit} handleChangeTitle={handleChangeTitle} handleClick={handleClick} data={data} fieldDetails={fieldDetails}/>
+                <MainContent handleDrop={handleDrop} previewDisabled={previewDisabled} editMode={editMode} doSubmit={doSubmit} handleChangeTitle={handleChangeTitle} handleClick={handleClick} data={data} fieldDetails={fieldDetails}/>
             </Layout>
 
         </div>
