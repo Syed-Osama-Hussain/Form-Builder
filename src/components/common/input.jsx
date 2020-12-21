@@ -1,17 +1,8 @@
 import React from "react";
 import PropTypes from 'prop-types';
 import { Input, InputNumber, Checkbox, Select} from 'antd';
-// import { ItemTypes } from '../../Constants';
-// import { useDrag } from 'react-dnd'
 
 const InputComp = ({ label="", type, onChange}) => {
-
-  // const [{isDragging}, drag] = useDrag({
-  //   item: { type: ItemTypes.INPUTCOMP },
-  //   collect: monitor => ({
-  //     isDragging: !!monitor.isDragging(),
-  //   }),
-  // })
 
   const getElement = (type) => {
     if(type === "text")
@@ -37,14 +28,7 @@ const InputComp = ({ label="", type, onChange}) => {
   }
   
   return (
-    <span 
-    // ref={drag} style={{
-    //   opacity: isDragging ? 0.5 : 1,
-    //   fontSize: 25,
-    //   fontWeight: 'bold',
-    //   cursor: 'move',
-    // }} 
-    >
+    <span>
     {getElement(type)} 
     </span>
   );
