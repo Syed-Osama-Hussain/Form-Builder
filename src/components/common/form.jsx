@@ -1,7 +1,7 @@
 import React from "react";
 import { Form, Button } from 'antd';
 import PropTypes from 'prop-types';
-import InputComp from "./input";
+import FormItemComp from "./formItem";
 
 const layout = {
   labelCol: {
@@ -48,7 +48,7 @@ const BaseForm = ({handleChange, fieldDetails, submitable, doSubmit, btnText}) =
       {fieldDetails.map((field,index) => {
         return (
           <div key={index}>
-            <InputComp name={field.name} label={field.label} required={field.required} 
+            <FormItemComp name={field.name} label={field.label} required={field.required} 
             placeholder={field.placeholder} type={field.type} onChange={handleChange}/>
           </div>
           )

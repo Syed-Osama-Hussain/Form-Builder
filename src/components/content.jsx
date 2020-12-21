@@ -1,5 +1,5 @@
 import React from "react"
-import InputComp from './common/input';
+import FormItemComp from './common/formItem';
 import BaseForm from "./common/form";
 import { Layout, Row, Col, Button } from 'antd';
 import PropTypes from "prop-types";
@@ -16,8 +16,8 @@ const MainContent = ({editMode, handleClick, previewDisabled, handleChangeTitle,
                     Preview
                     </Button>
                 </React.Fragment>}
-                <div style={{marginTop:"10%"}}>
-                    <InputComp name={"title"} label={""} required={true} placeholder={"Enter Form Title"} type={"text"} onChange={handleChangeTitle}/>
+                <div id="title" style={{marginTop:"10%"}}>
+                    <FormItemComp name={"title"} label={""} required={true} placeholder={"Enter Form Title"} type={"text"} onChange={handleChangeTitle}/>
                 </div>
                 <div style={{border:"1px solid #d9d9d9",marginTop: "-25px", height: "273px",overflowY:"scroll",backgroundColor:"white"}}>
                     <div style={{marginLeft:"10%",marginTop:"5%"}}>
