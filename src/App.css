@@ -1,11 +1,25 @@
 @import '~antd/dist/antd.css';
 
+body{
+    background-color: #001529;
+}
 
 @media (max-width: 500px) {
     #login{
         margin-left: 10%;
     }
-    
+
+    #loginForm{
+        width: 80%;
+        margin-left: 50px;
+    }
+
+    #sidebar{
+        width: 150px;
+    }
+    .ant-layout-sider-children{
+        width: 160px;
+    }
 }
    
 @media (min-width: 550px) {
@@ -13,9 +27,17 @@
     margin-left: 34%;
     }
 
+    #loginForm{
+        margin-left:20%
+    }
+
     #dashboard{
-        margin-left: 30%;
+        margin-left: 26%;
         margin-bottom: 2%;
+    }
+
+    #sidebar{
+        width: 200px;
     }
 }
 
@@ -23,4 +45,20 @@
     font-weight: bolder;
     height: 50px;
     font-size: 20px;
+}
+
+.ant-menu:not(.ant-menu-horizontal) .ant-menu-item-selected {
+    background-color: white;
+}
+
+.ant-menu-vertical .ant-menu-item::after, .ant-menu-vertical-left .ant-menu-item::after, .ant-menu-vertical-right .ant-menu-item::after, .ant-menu-inline .ant-menu-item::after{
+    border-right: none;
+}
+
+.ant-menu:not(.ant-menu-horizontal) .ant-menu-item-selected{
+    width: 100%;
+}
+
+.ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-item, .ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-submenu{
+    margin-top: -2px;
 }
