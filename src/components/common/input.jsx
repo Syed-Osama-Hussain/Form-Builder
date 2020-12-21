@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from 'prop-types';
-import { Form, Input, InputNumber, Checkbox} from 'antd';
+import { Form, Input, InputNumber, Checkbox, Select} from 'antd';
 
 
 const InputComp = ({ name, label, required, type, onChange}) => {
@@ -20,6 +20,10 @@ const InputComp = ({ name, label, required, type, onChange}) => {
     if(type === "checkbox"){
       return <Checkbox value={false} onChange={onChange}>{label}</Checkbox>
     }
+
+    if(type==="select")
+    return <Select  onChange={onChange} placeholder="Select your answer" >
+    </Select>
 
   }
   
@@ -42,7 +46,8 @@ const InputComp = ({ name, label, required, type, onChange}) => {
   </Form.Item>
   </div>
   );
-  }else{
+  }
+
     return(<Form.Item
       label={label}
       name={name}
@@ -51,7 +56,7 @@ const InputComp = ({ name, label, required, type, onChange}) => {
       {getElement(type)}
     </Form.Item>
   )
-  }
+
 };
 
 InputComp.propTypes = {
