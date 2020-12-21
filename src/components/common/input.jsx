@@ -1,9 +1,18 @@
 import React from "react";
 import PropTypes from 'prop-types';
-import { Form, Input, InputNumber, Checkbox, Select} from 'antd';
+import { Input, InputNumber, Checkbox, Select} from 'antd';
+// import { ItemTypes } from '../../Constants';
+// import { useDrag } from 'react-dnd'
 
+const InputComp = ({ label="", type, onChange}) => {
 
-const InputComp = ({ name, label, required, type, onChange}) => {
+  // const [{isDragging}, drag] = useDrag({
+  //   item: { type: ItemTypes.INPUTCOMP },
+  //   collect: monitor => ({
+  //     isDragging: !!monitor.isDragging(),
+  //   }),
+  // })
+
   const getElement = (type) => {
     if(type === "text")
     {
@@ -27,51 +36,29 @@ const InputComp = ({ name, label, required, type, onChange}) => {
 
   }
   
-  const rules = [
-    {
-      required: required,
-      message: 'Please Enter required field',
-    },
-  ]
-  if(type==="checkbox"){
   return (
-    <div>
-    <Form.Item
-    valuePropName="checked"
-    name={name}
-    rules={rules}
-  >
-    {getElement(type)} 
-    
-  </Form.Item>
-  </div>
-  );
-  }
-
-    return(<Form.Item
-      label={label}
-      name={name}
-      rules={rules}
+    <span 
+    // ref={drag} style={{
+    //   opacity: isDragging ? 0.5 : 1,
+    //   fontSize: 25,
+    //   fontWeight: 'bold',
+    //   cursor: 'move',
+    // }} 
     >
-      {getElement(type)}
-    </Form.Item>
-  )
-
+    {getElement(type)} 
+    </span>
+  );
+  
 };
 
 InputComp.propTypes = {
-    name: PropTypes.string.isRequired,
-    label: PropTypes.string.isRequired,
-    required: PropTypes.bool,
-    placeholder: PropTypes.string,
+    label: PropTypes.string,
     type: PropTypes.string,
     onChange: PropTypes.func
 }
 
 InputComp.defaultProps = {
-    required: false,
-    placeholder: "",
     type: "text"
-  };
+};
   
 export default InputComp;
