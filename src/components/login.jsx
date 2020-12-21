@@ -30,20 +30,13 @@ const Login = () => {
         }
     }
 
-    const handleChange = ({currentTarget: input}) => {
-        if(!input.value){
-            input.placeholder = ""
-            return
-        }
-     }
-
     return(
     <Layout.Content style={{marginTop:"2%"}} >
         <Row >
-            <Col style={{border:"1px solid black",height:"400px"}} id="login" xs={20} sm={15} lg={7} xl={7} >
-                <h1 style={{marginLeft:"45%",marginBottom:"10%"}}>Login</h1>
-                <div style={{marginLeft:"20%"}}>
-                    <BaseForm  handleChange={handleChange} data={data} fieldDetails={fieldDetails} doSubmit={doSubmit} submitable={true}  btnText={"login >"}/>
+            <Col style={{border:"1px solid black",height:"400px",backgroundColor:"white"}} id="login" xs={20} sm={15} lg={7} xl={7} >
+                <h1 style={{marginLeft:"40%",marginBottom:"7%",marginTop:"7%"}}>Login</h1>
+                <div id="loginForm">
+                    <BaseForm  data={data} fieldDetails={fieldDetails} doSubmit={doSubmit} submitable={true}  btnText={"login >"}/>
                 </div>
             </Col>
         </Row>
