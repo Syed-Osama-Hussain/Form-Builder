@@ -41,7 +41,7 @@ body{
     }
 }
 
-.ant-form-item-control-input-content #title{
+#title .ant-input{
     font-weight: bolder;
     height: 50px;
     font-size: 20px;
