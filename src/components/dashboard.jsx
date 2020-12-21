@@ -1,14 +1,13 @@
 import React, { useState } from "react";
 import NavBar from "./navbar";
 import { Layout, Row, Col, Button } from 'antd';
-import SelectComp from './common/select';
 import InputComp from './common/input';
 import BaseForm from "./common/form";
 import DisplayModal from "./displayModal";
 import { getUser } from "../services/auth";
 import { Redirect } from "react-router";
+import SideBar from "./sideBar";
 
-const options = ["Text","Number","Checkbox"]
 
 const Dashboard = () => {
 
@@ -37,13 +36,19 @@ const Dashboard = () => {
 
     const doSubmit = (values) =>{
         const fieldData = {}
-        for(let i=0;i<fieldDetails.length;i++){
-            if(fieldDetails[i].type === "checkbox" && !values[fieldDetails[i].name ]){
-                fieldData[fieldDetails[i].label] = false;    
-            }else{
-                fieldData[fieldDetails[i].label] = values[fieldDetails[i].name];
+        fieldDetails.map((field) => {
+            if(field.type === "checkbox" && !values[field.name]){
+                fieldData[field.label] = false;
+                return
             }
-        }
+            
+            if(field.type === "select"){
+                fieldData[field.label] = [];
+                return
+            }
+
+            fieldData[field.label] = values[field.name];            
+        })
         setData(fieldData)
         setIsModalVisible(true)
     }
@@ -58,13 +63,7 @@ const Dashboard = () => {
         setPreviewDisabled(false)
     }
 
-    const handleChangeFields = (value) => {
-        if(value.target && value.target.type === "checkbox"){
-            value.target.value = value.target.checked
-        }
-    }
-
-    const handleChangeSelect = (value) =>{
+    const handleSiderButtonClick = (value) =>{
         let newField = {name: `question${fieldDetails.length+1}`, label:`Question ${fieldDetails.length+1}`, required: false, placeholder: "", type: value.toLowerCase()}
         
         const newFieldData = [...fieldDetails,newField]; 
@@ -75,31 +74,35 @@ const Dashboard = () => {
         setEditmode(false)
     }
 
-    const height = fieldDetails.length > 2 ? "auto": "273px";
+    const height =  "273px";
 
     return(<div>
         <DisplayModal title={title} data={data} isModalVisible={isModalVisible} handleOk={handleOk} handleCancel={handleCancel}/>
         <NavBar/>
-
-        <Layout.Content style={{marginTop:"2%"}} >
-            <Row >
-            <Col xs={20} sm={15} lg={7} xl={1}></Col>
-            <Col id="dashboard" xs={20} sm={15} lg={7} xl={7} >
-            {editMode &&  <React.Fragment>  <SelectComp onChange={handleChangeSelect} options={options}/>
-                <Button onClick={handleClick} style={{marginLeft:"5px"}} disabled={previewDisabled} type="primary" htmlType="button">
+        <Layout className="site-layout-background" style={{ padding: '0px 0', paddingTop:"0px", backgroundColor:"#001529" }}>
+        <SideBar handleClick={handleSiderButtonClick}/>
+        <Layout.Content className="site-layout-background" style={{padding: '20px',
+            margin: 0,
+            minHeight: 280,marginTop:"2%"}} >
+            <Row style={{backgroundColor: "#001529", paddingTop: "20px", marginTop:"-2%"}}>
+            <Col xs={15} sm={15} lg={7} xl={1}></Col>
+            <Col id="dashboard" xs={22} sm={19} lg={7} xl={7} >
+            {editMode &&  <React.Fragment>  
+                <Button onClick={handleClick} style={{marginLeft:"33%"}} disabled={previewDisabled} type="primary" htmlType="button">
                 Preview
                 </Button></React.Fragment>}
                 <div style={{marginTop:"10%"}}>
                     <InputComp name={"title"} label={""} required={true} placeholder={"Enter Form Title"} type={"text"} onChange={handleChangeTitle}/>
                 </div>
-                <div style={{border:"1px solid #d9d9d9",marginTop: "-25px", height: height}}>
+                <div style={{border:"1px solid #d9d9d9",marginTop: "-25px", height: height, overflowY:"scroll",backgroundColor:"white"}}>
                     <div style={{marginLeft:"10%",marginTop:"5%"}}>
-                    <BaseForm doSubmit={doSubmit} handleChange={handleChangeFields} data={data} fieldDetails={fieldDetails} submitable={!editMode} btnText={"Submit"}/>
+                    <BaseForm doSubmit={doSubmit} data={data} fieldDetails={fieldDetails} submitable={!editMode} btnText={"Submit"}/>
                     </div>
                 </div>
             </Col>
             </Row>
         </Layout.Content>
+        </Layout>
 
     </div>)
 }
