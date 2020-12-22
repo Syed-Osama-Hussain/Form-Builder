@@ -18,7 +18,7 @@ const InputComp = ({ label="", type, onChange}) => {
     }
 
     if(type === "checkbox"){
-      return <Checkbox value={false} onChange={onChange}>{label}</Checkbox>
+      return <Checkbox onChange={onChange}>{label}</Checkbox>
     }
 
     if(type==="select")
