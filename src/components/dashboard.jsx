@@ -65,7 +65,6 @@ const Dashboard = () => {
     }
 
     const handleDrop = (value) =>{
-        console.log(value)
         let newField = {name: `question${fieldDetails.length+1}`, label:`Question ${fieldDetails.length+1}`, required: false, placeholder: "", type: value.toLowerCase()}
         
         const newFieldData = [...fieldDetails,newField]; 
