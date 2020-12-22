@@ -16,9 +16,21 @@ body{
 
     #sidebar{
         width: 150px;
+        margin-right: 10px;
+        padding-right: 10px;
     }
     .ant-layout-sider-children{
         width: 160px;
+    }
+
+    #dashboard{
+        margin-left: 5px;
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    #content{
+        padding:0;
     }
 }
    
@@ -32,7 +44,7 @@ body{
     }
 
     #dashboard{
-        margin-left: 26%;
+        margin-left: 20%;
         margin-bottom: 2%;
     }
 
