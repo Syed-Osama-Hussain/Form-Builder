@@ -21,9 +21,7 @@ const Login = () => {
 
     const doSubmit = ({email, password})=>{
         try{
-            const user = login(email,password);
-            alert(`Welcome to Form Builder ${user}`)
-             
+            login(email,password);             
             window.location = "/dashboard";
         }catch(ex){
             console.log(ex);
